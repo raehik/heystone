@@ -17,10 +17,11 @@ license:        GPL-2
 license-file:   LICENSE
 build-type:     Simple
 tested-with:
-    GHC ==9.2.2
+    GHC ==8.0.2, GHC ==9.2.3
 extra-source-files:
     README.md
     CHANGELOG.md
+    cbits/include/keystone_wrapper.h
 
 source-repository head
   type: git

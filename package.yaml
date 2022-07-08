@@ -5,6 +5,7 @@ description: Please see README.md.
 extra-source-files:
 - README.md
 - CHANGELOG.md
+- cbits/include/*
 category: Bindings, Compilers/Interpreters, Assembler
 tested-with: GHC ==8.0.2, GHC ==9.2.3
 license: GPL-2

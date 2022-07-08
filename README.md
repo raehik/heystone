@@ -1,35 +1,29 @@
-# Keystone Haskell bindings
+# Heystone - Haskell bindings for the Keystone assembler framework
 [keystone-gh]: https://github.com/keystone-engine/keystone
 [keystone-gh-hs]: https://github.com/keystone-engine/keystone/tree/master/bindings/haskell
+[hapstone-gh]: https://github.com/ibabushkin/hapstone
 
 Haskell bindings for [Keystone][keystone-gh], a powerful multi-architecture
 assembler framework.
 
 This package is derived from the Haskell bindings at
 [keystone-engine/keystone][keystone-gh-hs], which at the time were highly usable
-but unmaintained and never uploaded to Hackage.
+but unmaintained and never uploaded to Hackage. To not obstruct a potential
+future official package (and to give myself flexibility), I'm appropriating
+[Hapstone][hapstone-gh]'s naming convention.
 
-## Building
-TODO
+## Usage
+Specify as a dependency in your Cabal file (or Stack, but you'll have to
+register it as an `extra-dep`).
 
-1. Install the core Keystone Assembler as a dependency:
+You will need the Keystone engine installed. It's not packaged on many systems,
+so you many wish to check the [Keystone
+docs](https://www.keystone-engine.org/docs/) for instructions. For my fellow
+Arch Linux fiends, it's in the main repos:
 
-   Follow docs/COMPILE.md in the root directory to compile & install the core.
-2. Change into the Haskell bindings directory, build and install:
+    pacman -S keystone
 
-    ```
-$ cd bindings/haskell
-$ cabal install
-```
-
-If you are installing into a sandbox, run `cabal sandbox init` before
-installing Keystone's dependencies.
-
-If the build fails, install c2hs manually `cabal install c2hs` (note that this
-will probably also require you to run `cabal install alex` and `cabal install
-happy` as well). If you are NOT using a sandbox, ensure that `$HOME/.cabal/bin`
-is on your PATH.
-
+## Examples
 To build a sample (after having built and installed the Haskell bindings):
 
 ```

@@ -1,6 +1,6 @@
 -- Sample code for Keystone Assembler Engine.
 
-import Keystone
+import Heystone
 
 import qualified Data.ByteString as BS
 import Data.List (intercalate)

@@ -55,7 +55,7 @@ runAssembler =
 -- | Create a new instance of the Keystone assembler.
 open :: Architecture        -- ^ CPU architecture
      -> [Mode]              -- ^ CPU hardware mode
-     -> Assembler Engine    -- ^ A 'Keystone' engine on success, or an 'Error'
+     -> Assembler Engine    -- ^ A Keystone engine on success, or an 'Error'
                             -- on failure
 open arch mode = do
     (err, ksPtr) <- lift $ ksOpen arch mode
@@ -67,7 +67,7 @@ open arch mode = do
         -- Otherwise return an error
         throwE err
 
-option :: Engine        -- ^ 'Keystone' engine handle
+option :: Engine        -- ^ Keystone engine handle
        -> OptionType    -- ^ Type of option to set
        -> OptionValue   -- ^ Option value corresponding with the type
        -> Assembler ()  -- ^ An 'Error' on failure
@@ -79,7 +79,7 @@ option ks optType optValue = do
         throwE err
 
 -- | Assemble a list of statements.
-assemble :: Engine                      -- ^ 'Keystone' engine handle
+assemble :: Engine                      -- ^ Keystone engine handle
          -> [String]                    -- ^ List of statements to assemble.
          -> Maybe Word64                -- ^ Optional address of the first
                                         -- assembly instruction
@@ -116,7 +116,7 @@ version =
     ksVersion nullPtr nullPtr
 
 -- | Report the 'Error' number when some API function failed.
-errno :: Engine             -- ^ 'Keystone' engine handle
+errno :: Engine             -- ^ Keystone engine handle
       -> Assembler Error    -- ^ The last 'Error' code
 errno =
     lift . ksErrno

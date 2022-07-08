@@ -32,14 +32,14 @@ import Foreign
 {# pointer *ks_engine as EnginePtr -> Engine #}
 
 -- | Make a new Keystone engine out of an engine pointer. The returned Keystone
--- engine will automatically call 'ks_close_wrapper' when it goes out of scope.
+-- engine will automatically call @ks_close_wrapper@ when it goes out of scope.
 mkEngine :: EnginePtr
          -> IO Engine
 mkEngine ptr =
     liftM Engine (newForeignPtr close ptr)
 
 -- | Errors encountered by the Keystone API. These values are returned by
--- 'errno'.
+--   'Heystone.errno'.
 {# enum ks_err as Error
    { underscoreToCase }
    with prefix = "KS_"
