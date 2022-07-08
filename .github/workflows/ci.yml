@@ -140,6 +140,19 @@ jobs:
     # TODO figure out timestamp fixer on Mac (no Mac available to test)
     - uses: actions/checkout@v2
 
+    - name: Manually build & install keystone-engine library
+      run: |-
+        pushd ..
+        git clone https://github.com/keystone-engine/keystone
+        pushd keystone
+        mkdir build
+        pushd build
+        ../make-share.sh
+        sudo make install
+        popd
+        popd
+        popd
+
     - name: Setup Haskell build environment
       id: setup-haskell-build-env
       uses: haskell/actions/setup@v1
