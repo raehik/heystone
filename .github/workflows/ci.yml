@@ -63,6 +63,22 @@ jobs:
             touch -d $(git log --pretty=format:%cI -1 "$rev" -- "$f") "$f";
         done
 
+    - name: Manually build & install keystone-engine library
+      run: |-
+        pushd ..
+        git clone https://github.com/keystone-engine/keystone
+        pushd keystone
+        mkdir build
+        pushd build
+        ../make-share.sh
+        sudo make install
+        popd
+        popd
+        popd
+
+    - name: Fix dynamic lib searching weirdness
+      run: sudo ldconfig
+
     - name: Setup Haskell build environment
       id: setup-haskell-build-env
       uses: haskell/actions/setup@v1
