@@ -7,6 +7,10 @@
 #
 # This workflow is based on the expectation that GitHub's runners install GHC
 # using ghcup with default settings (installs GHCs to `~/.ghcup/ghc/$VERSION`).
+#
+# TODO: Had to disable project caching (dist-newstyle) because cabal apparently
+# forgets to rebuild the documentation if it's not there if the code doesn't
+# change. Dumb.
 
 name: Hackage artifacts
 
