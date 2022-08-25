@@ -32,9 +32,9 @@ jobs:
         cabal: [latest]
         ghc:
         - 8.0.2
-        - 9.2.3
+        - 9.4.1
         include:
-        - ghc: 9.2.3
+        - ghc: 9.4.1
           build: release
 
     steps:
@@ -124,9 +124,9 @@ jobs:
         os: [macos-latest]
         cabal: [latest]
         ghc:
-        - 9.2.3
+        - 9.4.1
         include:
-        - ghc: 9.2.3
+        - ghc: 9.4.1
           build: release
 
     steps:
@@ -198,10 +198,10 @@ jobs:
         os: [windows-latest]
         cabal: [latest]
         ghc:
-        - 9.2.3
+        - 9.4.1
         msystem: [MINGW64]
         include:
-        - ghc: 9.2.3
+        - ghc: 9.4.1
           build: release
 
     steps:
