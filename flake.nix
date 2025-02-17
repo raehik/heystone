@@ -4,22 +4,37 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     haskell-flake.url = "github:srid/haskell-flake";
   };
-  outputs = inputs@{ self, nixpkgs, flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = nixpkgs.lib.systems.flakeExposed;
+
+  outputs = inputs:
+  let
+    defDevShell = compiler: {
+      mkShellArgs.name = "${compiler}";
+      hoogle = false;
+      tools = _: {
+        haskell-language-server = null;
+        hlint = null;
+        ghcid = null;
+      };
+    };
+  in
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
       imports = [ inputs.haskell-flake.flakeModule ];
-      perSystem = { self', pkgs, ... }: {
-        haskellProjects.default = {
-          # packages.example.root = ./.;  # This value is detected based on .cabal files
-          # overrides = self: super: { };
-          # devShell = {
-          #  enable = true;  # Enabled by default
-          #  tools = hp: { fourmolu = hp.fourmolu; ghcid = null; };
-          #  hlsCheck.enable = true;
-          # };
+      perSystem = { self', pkgs, config, ... }: {
+        packages.default  = self'.packages.ghc910-heystone;
+        devShells.default = self'.devShells.ghc910;
+        haskellProjects.ghc910 = {
+          basePackages = pkgs.haskell.packages.ghc910;
+          devShell = defDevShell "ghc910";
         };
-        # haskell-flake doesn't set the default package, but you can do it here.
-        packages.default = self'.packages.heystone;
+        haskellProjects.ghc98 = {
+          basePackages = pkgs.haskell.packages.ghc98;
+          devShell = defDevShell "ghc98";
+        };
+        haskellProjects.ghc96 = {
+          basePackages = pkgs.haskell.packages.ghc96;
+          devShell = defDevShell "ghc96";
+        };
       };
     };
 }
